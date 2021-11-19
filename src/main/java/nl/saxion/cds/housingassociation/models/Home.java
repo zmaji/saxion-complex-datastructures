@@ -1,19 +1,19 @@
 package nl.saxion.cds.housingassociation.models;
 
 public class Home {
-    private final Long HomeId;
+    private final Long homeID;
     private int addressX;
     private int addressY;
     private int rent;
     private int nrOfRooms;
     private boolean garden;
 
-    public Home(Long homeId) {
-        HomeId = homeId;
+    public Home(Long homeID) {
+        this.homeID = homeID;
     }
 
-    public Long getHomeId() {
-        return HomeId;
+    public Long getHomeID() {
+        return homeID;
     }
 
     public int getAddressX() {
