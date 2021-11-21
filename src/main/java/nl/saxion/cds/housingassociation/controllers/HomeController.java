@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 @RestController
@@ -14,9 +16,10 @@ import java.util.HashMap;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class HomeController {
     public static HashMap<String, Home> homes = HomeProvider.homes;
+    public static Collection<Home> listedHomes = homes.values();
 
     @GetMapping
-    public HashMap<String, Home> getHomes() {
-        return homes;
+    public Collection<Home> getHomes() {
+        return listedHomes;
     }
 }
