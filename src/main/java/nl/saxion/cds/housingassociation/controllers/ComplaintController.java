@@ -23,4 +23,9 @@ public class ComplaintController {
     public Collection<Complaint> getComplaints() {
         return complaintService.getComplaints();
     }
+
+//    @GetMapping("/frequent")
+//    public int getMostFrequent() {
+//        return complaintService.getTopComplaintType();
+//    }
 }

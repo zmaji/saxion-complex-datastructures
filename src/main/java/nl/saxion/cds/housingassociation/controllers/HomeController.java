@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/homes")
@@ -24,5 +25,10 @@ public class HomeController {
     @GetMapping
     public Collection<Home> getHomes() {
         return homeService.getHomes();
+    }
+
+    @GetMapping("top-maintenance")
+    public HashMap<Long, Integer> getTopMaintenanceHomes() {
+        return homeService.getTopMaintenanceHomes();
     }
 }
