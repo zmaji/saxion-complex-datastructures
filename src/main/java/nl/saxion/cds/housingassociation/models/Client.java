@@ -1,6 +1,6 @@
 package nl.saxion.cds.housingassociation.models;
 
-public class Client {
+public class Client implements Comparable<Client> {
     private final Long clientID;
     private String name;
     private String initials;
@@ -54,5 +54,10 @@ public class Client {
 
     public void setGarden(boolean garden) {
         this.garden = garden;
+    }
+
+    @Override
+    public int compareTo(Client o) {
+        return o.urgency - urgency;
     }
 }

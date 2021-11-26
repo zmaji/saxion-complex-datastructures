@@ -4,11 +4,11 @@ import nl.saxion.cds.housingassociation.models.Client;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class ClientProvider {
-    public static HashMap<String, Client> clients = new HashMap<>();
+    public static PriorityQueue<Client> clients = new PriorityQueue<>();
 
     static {
         File homeFile = new File("./src/main/java/nl/saxion/cds/housingassociation/data/waitinglist.csv");
@@ -24,7 +24,7 @@ public class ClientProvider {
                     newClient.setNrOfRooms(Integer.parseInt(splits[4]));
                     newClient.setGarden(Boolean.parseBoolean(splits[5]));
 
-                    clients.put(splits[0], newClient);
+                    clients.add(newClient);
                 }
             }
         } catch (FileNotFoundException e) {
