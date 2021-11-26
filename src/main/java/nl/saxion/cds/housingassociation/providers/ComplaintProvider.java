@@ -21,8 +21,10 @@ public class ComplaintProvider {
                     newComplaint.setHomeId(Long.parseLong(splits[1]));
                     newComplaint.setCategory(splits[2]);
                     newComplaint.setEstimatedTime(Integer.parseInt(splits[3]));
-                    newComplaint.setActualTime(Integer.parseInt(splits[4]));
-                    newComplaint.setOtherCosts(Integer.parseInt(splits[5]));
+                    if (splits.length > 4) {
+                        newComplaint.setActualTime(Integer.parseInt(splits[4]));
+                        newComplaint.setOtherCosts(Integer.parseInt(splits[5]));
+                    }
 
                     complaints.put(splits[0], newComplaint);
                 }

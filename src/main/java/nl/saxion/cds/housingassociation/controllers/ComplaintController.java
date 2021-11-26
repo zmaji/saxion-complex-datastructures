@@ -19,8 +19,8 @@ public class ComplaintController {
         this.complaintService = complaintService;
     }
 
-//    @GetMapping
-//    public Collection<Complaint> getComplaints() {
-//        return complaintService.getComplaints();
-//    }
+    @GetMapping
+    public Collection<Complaint> getComplaints() {
+        return complaintService.getComplaints();
+    }
 }
