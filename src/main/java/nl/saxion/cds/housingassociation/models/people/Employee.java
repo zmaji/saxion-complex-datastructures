@@ -1,4 +1,7 @@
-package nl.saxion.cds.housingassociation.models;
+package nl.saxion.cds.housingassociation.models.people;
+
+import nl.saxion.cds.housingassociation.models.Complaint;
+import nl.saxion.cds.housingassociation.models.Route;
 
 import java.util.List;
 

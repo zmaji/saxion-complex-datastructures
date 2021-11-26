@@ -1,7 +1,6 @@
 package nl.saxion.cds.housingassociation.controllers;
 
-import nl.saxion.cds.housingassociation.models.Client;
-import nl.saxion.cds.housingassociation.providers.ClientProvider;
+import nl.saxion.cds.housingassociation.models.people.Client;
 import nl.saxion.cds.housingassociation.services.ClientService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
