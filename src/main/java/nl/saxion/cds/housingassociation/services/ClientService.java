@@ -1,6 +1,6 @@
 package nl.saxion.cds.housingassociation.services;
 
-import nl.saxion.cds.housingassociation.models.Client;
+import nl.saxion.cds.housingassociation.models.people.Client;
 import nl.saxion.cds.housingassociation.providers.ClientProvider;
 import org.springframework.stereotype.Service;
 

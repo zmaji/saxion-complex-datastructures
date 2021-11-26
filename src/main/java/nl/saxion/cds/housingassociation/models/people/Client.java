@@ -1,4 +1,4 @@
-package nl.saxion.cds.housingassociation.models;
+package nl.saxion.cds.housingassociation.models.people;
 
 public class Client extends Person implements Comparable<Client> {
     private int urgency;

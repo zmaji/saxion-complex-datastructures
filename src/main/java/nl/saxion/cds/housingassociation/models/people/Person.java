@@ -1,4 +1,4 @@
-package nl.saxion.cds.housingassociation.models;
+package nl.saxion.cds.housingassociation.models.people;
 
 public abstract class Person {
     private final Long ID;
