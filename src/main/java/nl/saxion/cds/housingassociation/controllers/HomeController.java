@@ -1,8 +1,6 @@
 package nl.saxion.cds.housingassociation.controllers;
 
 import nl.saxion.cds.housingassociation.models.Home;
-import nl.saxion.cds.housingassociation.providers.HomeProvider;
-import nl.saxion.cds.housingassociation.services.ClientService;
 import nl.saxion.cds.housingassociation.services.HomeService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +26,7 @@ public class HomeController {
     }
 
     @GetMapping("top-maintenance")
-    public HashMap<Long, Integer> getTopMaintenanceHomes() {
-        return homeService.getTopMaintenanceHomes();
+    public HashMap<Long, Integer> getTotalMaintenanceCosts() {
+        return homeService.getTotalMaintenanceCosts();
     }
 }
