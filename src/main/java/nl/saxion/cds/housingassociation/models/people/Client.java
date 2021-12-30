@@ -35,6 +35,6 @@ public class Client extends Person implements Comparable<Client> {
 
     @Override
     public int compareTo(Client o) {
-        return o.urgency - urgency;
+        return urgency - o.urgency;
     }
 }
