@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/clients")
@@ -27,13 +29,13 @@ public class ClientController {
         return clientService.getClients();
     }
 
-    @GetMapping("/available-homes")
-    public HashMap<Client, Home> getAvailableHomes() {
-        return clientService.getAvailableHomes();
-    }
-
-//    @GetMapping("/available-homes2")
-//    public List<Home> getAvailableHomes2() {
-//        return clientService.getAvailableHomes2();
+//    @GetMapping("/qualified")
+//    public HashMap<Client, Home> getQualifiedClients() {
+//        return clientService.getQualifiedClients();
 //    }
+
+    @GetMapping("/qualified")
+    public List<Map.Entry<Client, Home>> getQualifiedClients() {
+        return clientService.getQualifiedClients();
+    }
 }

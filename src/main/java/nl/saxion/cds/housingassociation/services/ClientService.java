@@ -6,10 +6,7 @@ import nl.saxion.cds.housingassociation.providers.ClientProvider;
 import nl.saxion.cds.housingassociation.providers.HomeProvider;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 @Service
 public class ClientService {
@@ -20,35 +17,28 @@ public class ClientService {
         return clients;
     }
 
-    public HashMap<Client, Home> getAvailableHomes() {
-        List<Home> availableHomes = new ArrayList<>(homes.values());
-        HashMap<Client, Home> qualifiedHomes = new HashMap<>();
-//        System.out.println(availableHomes.size());
-        for (Home home : availableHomes) {
-            for (Client client : clients) {
-                if (client.isGarden() == home.isGarden()) {
-                    if (client.getNrOfRooms() == home.getNrOfRooms()) {
-                        qualifiedHomes.put(client, home);
+    public List<Map.Entry<Client, Home>> getQualifiedClients() {
+        HashMap<Client, Home> qualifiedClients = new HashMap<>();
+
+        // Convert Priority Queue to List due to not being able to iterate through a Priority Queue because .poll() removes the element.
+        List<Client> sortedClients = new ArrayList<>(clients);
+        sortedClients.sort(Comparator.reverseOrder());
+
+        // For every client loop through all homes
+        for (Client client : sortedClients) {
+            for (Home home : homes.values()) {
+                // Check if desired specifications are qualified
+                if (client.isGarden() == home.isGarden() && client.getNrOfRooms() == home.getNrOfRooms()) {
+                    // If the home isn't already given away, add to the HashMap
+                    if (!qualifiedClients.containsValue(home)) {
+                        qualifiedClients.put(client, home);
                     }
                 }
             }
         }
-        return qualifiedHomes;
+        // Convert HashMap to List for sorting based on urgency
+        List<Map.Entry<Client, Home>> convertedQualifiedClients = new ArrayList<>(qualifiedClients.entrySet());
+        convertedQualifiedClients.sort(Map.Entry.comparingByKey(Comparator.reverseOrder()));
+        return convertedQualifiedClients;
     }
-
-//    public List<Home> getAvailableHomes2() {
-//        List<Home> availableHomes = new ArrayList<>(homes.values());
-//        HashMap<Client, Home> qualifiedHomes = new HashMap<>();
-////        System.out.println(availableHomes.size());
-//        for (Home home : availableHomes) {
-//            for (Client client : clients) {
-//                if (client.isGarden() && home.isGarden()) {
-//                    if (client.getNrOfRooms() == home.getNrOfRooms()) {
-//                        qualifiedHomes.put(client, home);
-//                    }
-//                }
-//            }
-//        }
-//        return availableHomes;
-//    }
 }

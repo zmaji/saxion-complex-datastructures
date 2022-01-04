@@ -17,7 +17,7 @@ public class ComplaintService {
     public void getTopComplaints () {
         List<String> categories = new ArrayList<>();
         HashMap<String, Integer> topComplaints = new HashMap<>();
-        List<Map.Entry<String, Integer>> topComplaints2 = new ArrayList<>(topComplaints.entrySet());
+        List<Map.Entry<String, Integer>> convertedTopComplaints = new ArrayList<>(topComplaints.entrySet());
 
         // Add all category variables of a Complaint object into a new List
         for (Complaint complaint : complaints.values()) {
@@ -37,8 +37,8 @@ public class ComplaintService {
         topComplaints.put("Other", otherCount);
 
         // Sort List based on frequency in reversed order
-        topComplaints2.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
-        System.out.println(topComplaints2);
+        convertedTopComplaints.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+        System.out.println(convertedTopComplaints);
     }
 
 
