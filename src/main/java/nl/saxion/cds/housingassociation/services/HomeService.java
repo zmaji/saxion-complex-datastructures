@@ -9,6 +9,7 @@ import nl.saxion.cds.housingassociation.providers.ComplaintProvider;
 import nl.saxion.cds.housingassociation.providers.HomeProvider;
 import org.springframework.stereotype.Service;
 
+import java.awt.geom.Point2D;
 import java.util.*;
 
 @Service
@@ -68,6 +69,40 @@ public class HomeService {
         return maintenanceCostsTop;
     }
 
+//    public Graph calculateShortestPathFromSource() {
+//        Node nodeA = new Node("A");
+//        Node nodeB = new Node("B");
+//        Node nodeC = new Node("C");
+//        Node nodeD = new Node("D");
+//        Node nodeE = new Node("E");
+//        Node nodeF = new Node("F");
+//
+//        nodeA.addDestination(nodeB, 10);
+//        nodeA.addDestination(nodeC, 15);
+//
+//        nodeB.addDestination(nodeD, 12);
+//        nodeB.addDestination(nodeF, 15);
+//
+//        nodeC.addDestination(nodeE, 10);
+//
+//        nodeD.addDestination(nodeE, 2);
+//        nodeD.addDestination(nodeF, 1);
+//
+//        nodeF.addDestination(nodeE, 5);
+//
+//        Graph dijkstra = new Graph();
+//
+//        dijkstra.addNode(nodeA);
+//        dijkstra.addNode(nodeB);
+//        dijkstra.addNode(nodeC);
+//        dijkstra.addNode(nodeD);
+//        dijkstra.addNode(nodeE);
+//        dijkstra.addNode(nodeF);
+//
+//        System.out.println(dijkstra.calculateShortestPathFromSource(dijkstra, nodeA));
+//        return dijkstra.calculateShortestPathFromSource(dijkstra, nodeA);
+//    }
+
     public Graph calculateShortestPathFromSource() {
         Node nodeA = new Node("A");
         Node nodeB = new Node("B");
@@ -98,7 +133,9 @@ public class HomeService {
         dijkstra.addNode(nodeE);
         dijkstra.addNode(nodeF);
 
-//        System.out.println(dijkstra.calculateShortestPathFromSource(dijkstra, nodeA));
+//        new Point2D.Double(0,0);
+
+        System.out.println(dijkstra.calculateShortestPathFromSource(dijkstra, nodeA));
         return dijkstra.calculateShortestPathFromSource(dijkstra, nodeA);
     }
 }
