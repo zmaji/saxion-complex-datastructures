@@ -28,4 +28,9 @@ public abstract class Person {
     public void setInitials(String initials) {
         this.initials = initials;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + this.ID + ", name: " + this.name + ", initials: " + this.initials;
+    }
 }

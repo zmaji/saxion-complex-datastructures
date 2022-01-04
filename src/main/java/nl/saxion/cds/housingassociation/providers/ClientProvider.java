@@ -23,7 +23,7 @@ public class ClientProvider {
                     newClient.setInitials(splits[2]);
                     newClient.setUrgency(Integer.parseInt(splits[3]));
                     newClient.setNrOfRooms(Integer.parseInt(splits[4]));
-                    newClient.setGarden(Boolean.parseBoolean(splits[5]));
+                    newClient.setGarden(splits[5].equals("Yes"));
 
                     clients.add(newClient);
                 }

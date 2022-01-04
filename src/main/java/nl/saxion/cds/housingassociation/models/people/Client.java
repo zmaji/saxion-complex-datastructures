@@ -37,4 +37,9 @@ public class Client extends Person implements Comparable<Client> {
     public int compareTo(Client o) {
         return urgency - o.urgency;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", urgency: " + urgency + " desired rooms: " + nrOfRooms + " desired garden: " + garden;
+    }
 }
