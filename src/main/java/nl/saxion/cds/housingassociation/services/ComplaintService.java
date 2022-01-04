@@ -14,6 +14,35 @@ public class ComplaintService {
         return complaints.values();
     }
 
+    public void getTopComplaints () {
+        List<String> categories = new ArrayList<>();
+        HashMap<String, Integer> topComplaints = new HashMap<>();
+        List<Map.Entry<String, Integer>> topComplaints2 = new ArrayList<>(topComplaints.entrySet());
+
+        // Add all category variables of a Complaint object into a new List
+        for (Complaint complaint : complaints.values()) {
+            categories.add(complaint.getCategory());
+        }
+
+        // Count the frequency of a certain category
+        int electCount = Collections.frequency(categories, "electricity");
+        int waterCount = Collections.frequency(categories, "water");
+        int gasCount = Collections.frequency(categories, "gas");
+        int otherCount = Collections.frequency(categories, "other");
+
+        // Add name with frequency count into a new List
+        topComplaints.put("Electricity", electCount);
+        topComplaints.put("Water", waterCount);
+        topComplaints.put("Gas", gasCount);
+        topComplaints.put("Other", otherCount);
+
+        // Sort List based on frequency in reversed order
+        topComplaints2.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+        System.out.println(topComplaints2);
+    }
+
+
+
 //    public int getTopComplaintType() {
 //        Collection<Complaint> types = complaints.values();
 //
@@ -25,12 +54,13 @@ public class ComplaintService {
 //        List<Integer> numbers = new ArrayList<>();
 //
 //        int highestType = 0;
-////        for (Integer type : types) {
-////            if (type > highestType) {
-////                highestType = type;
-////            }
-////        }
+//        for (Integer type : types) {
+//            if (type > highestType) {
+//                highestType = type;
+//            }
+//        }
 //
 //        return highestType;
 //    }
+
 }

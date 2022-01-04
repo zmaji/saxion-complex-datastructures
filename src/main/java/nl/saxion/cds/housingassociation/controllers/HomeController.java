@@ -1,5 +1,6 @@
 package nl.saxion.cds.housingassociation.controllers;
 
+import nl.saxion.cds.housingassociation.dijkstra.Graph;
 import nl.saxion.cds.housingassociation.models.Home;
 import nl.saxion.cds.housingassociation.services.HomeService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,5 +29,10 @@ public class HomeController {
     @GetMapping("top-maintenance")
     public HashMap<Long, Integer> getTotalMaintenanceCosts() {
         return homeService.getTotalMaintenanceCosts();
+    }
+
+    @GetMapping("graph")
+    public Graph calculateShortestPathFromSource() {
+        return homeService.calculateShortestPathFromSource();
     }
 }
