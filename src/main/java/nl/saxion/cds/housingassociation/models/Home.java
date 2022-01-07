@@ -12,6 +12,12 @@ public class Home {
         this.homeID = homeID;
     }
 
+    public Home(Long homeID, int addressX, int addressY) {
+        this.homeID = homeID;
+        this.addressX = addressX;
+        this.addressY = addressY;
+    }
+
     public Long getHomeID() {
         return homeID;
     }
