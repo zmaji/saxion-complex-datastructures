@@ -117,7 +117,7 @@ public class HomeService {
         //        1079; 53x, 37y --> neighbours; 1085, 1096, 1023
         //        1085; 146x, 418y --> neighbours; 1079, 1096, 1086
         //        1086; 201x, 721y --> neighbours; 1085, 1106, 1008
-        //        1106; 74x, 979y --> neighbours; 1086, 1008
+        //        1106; 74x, 979y --> neighbours; 1086
         //        1008; 330x, 792y --> neighbours; 1086, 1096, 1018
         //        1096; 347x, 427y --> neighbours; 1085, 1079, 1023, 1003, 1018, 1008
         //        1023; 414x, 314y --> neighbours; 1079, 1096, 1003
@@ -166,7 +166,7 @@ public class HomeService {
         nodeG.addDestination(nodeF, calculateDistance(nodeG, nodeF)); // 1023
 
         //        1085; 146x, 418y --> neighbours; 1079, 1096, 1086
-        nodeH.addDestination(nodeA, calculateDistance(nodeH, nodeA)); // 1079
+        nodeH.addDestination(nodeG, calculateDistance(nodeH, nodeG)); // 1079
         nodeH.addDestination(nodeJ, calculateDistance(nodeH, nodeJ)); // 1096
         nodeH.addDestination(nodeI, calculateDistance(nodeH, nodeI)); // 1086
 
@@ -175,9 +175,8 @@ public class HomeService {
         nodeI.addDestination(nodeK, calculateDistance(nodeI, nodeK)); // 1106
         nodeI.addDestination(nodeC, calculateDistance(nodeI, nodeC)); // 1008
 
-        //        1106; 74x, 979y --> neighbours; 1086, 1008
+        //        1106; 74x, 979y --> neighbours; 1086
         nodeK.addDestination(nodeI, calculateDistance(nodeK, nodeI)); // 1086
-        nodeK.addDestination(nodeC, calculateDistance(nodeK, nodeC)); // 1008
 
         //        1008; 330x, 792y --> neighbours; 1086, 1096, 1018
         nodeC.addDestination(nodeI, calculateDistance(nodeC, nodeI)); // 1086
