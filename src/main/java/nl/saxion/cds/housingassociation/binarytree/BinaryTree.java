@@ -1,4 +1,4 @@
-package nl.saxion.cds.housingassociation;
+package nl.saxion.cds.housingassociation.binarytree;
 
 import java.util.ArrayList;
 import java.util.List;

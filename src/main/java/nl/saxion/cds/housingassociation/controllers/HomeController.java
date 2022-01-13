@@ -1,6 +1,6 @@
 package nl.saxion.cds.housingassociation.controllers;
 
-import nl.saxion.cds.housingassociation.dijkstra.Graph;
+import nl.saxion.cds.housingassociation.graph.Graph;
 import nl.saxion.cds.housingassociation.models.Home;
 import nl.saxion.cds.housingassociation.services.HomeService;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -1,4 +1,4 @@
-package nl.saxion.cds.housingassociation.dijkstra;
+package nl.saxion.cds.housingassociation.graph;
 
 import java.util.HashSet;
 import java.util.LinkedList;

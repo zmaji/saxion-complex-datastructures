@@ -1,15 +1,14 @@
 package nl.saxion.cds.housingassociation.services;
 
-import nl.saxion.cds.housingassociation.BinaryTree;
-import nl.saxion.cds.housingassociation.dijkstra.Graph;
-import nl.saxion.cds.housingassociation.dijkstra.Node;
+import nl.saxion.cds.housingassociation.binarytree.BinaryTree;
+import nl.saxion.cds.housingassociation.graph.Graph;
+import nl.saxion.cds.housingassociation.graph.Node;
 import nl.saxion.cds.housingassociation.models.Complaint;
 import nl.saxion.cds.housingassociation.models.Home;
 import nl.saxion.cds.housingassociation.providers.ComplaintProvider;
 import nl.saxion.cds.housingassociation.providers.HomeProvider;
 import org.springframework.stereotype.Service;
 
-import java.awt.geom.Point2D;
 import java.util.*;
 
 @Service
