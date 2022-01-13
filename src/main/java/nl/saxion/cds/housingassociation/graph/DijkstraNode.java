@@ -6,6 +6,9 @@ import java.util.*;
 
 public class DijkstraNode {
 
+    /** Class is made with the help of https://www.baeldung.com/java-dijkstra
+     * Comments and implementation made by Nils Kimenai and Maurice ten Teije */
+
     private Long name;
 
     private Home home;
