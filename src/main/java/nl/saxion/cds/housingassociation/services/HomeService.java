@@ -58,6 +58,7 @@ public class HomeService {
             for (Integer topNode : topNodes) {
                 if (entry.getValue().equals(topNode)) {
                     valid = true;
+                    break;
                 }
             }
             if (valid) {

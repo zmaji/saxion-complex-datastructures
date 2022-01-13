@@ -31,7 +31,7 @@ public class HomeController {
         return homeService.getTotalMaintenanceCosts();
     }
 
-    @GetMapping("graph")
+    @GetMapping("route-shortestpath")
     public Graph calculateShortestPathFromSource() {
         return homeService.calculateShortestPathFromSource();
     }
