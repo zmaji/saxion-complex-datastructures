@@ -29,18 +29,6 @@ public class Node {
         return home;
     }
 
-    public void setHome(Home home) {
-        this.home = home;
-    }
-
-    public Long getName() {
-        return name;
-    }
-
-    public void setName(Long name) {
-        this.name = name;
-    }
-
     public List<Node> getShortestPath() {
         return shortestPath;
     }
@@ -59,10 +47,6 @@ public class Node {
 
     public Map<Node, Integer> getAdjacentNodes() {
         return adjacentNodes;
-    }
-
-    public void setAdjacentNodes(Map<Node, Integer> adjacentNodes) {
-        this.adjacentNodes = adjacentNodes;
     }
 
     @Override

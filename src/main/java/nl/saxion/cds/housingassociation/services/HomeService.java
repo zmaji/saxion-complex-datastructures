@@ -103,8 +103,7 @@ public class HomeService {
 //    }
 
     public int calculateDistance(Node start, Node destination) {
-        int addressDistance = (destination.getHome().getAddressY() - start.getHome().getAddressY() + (destination.getHome().getAddressX() - start.getHome().getAddressX()));
-        return addressDistance;
+        return (destination.getHome().getAddressY() - start.getHome().getAddressY() + (destination.getHome().getAddressX() - start.getHome().getAddressX()));
     }
 
     public Graph calculateShortestPathFromSource() {
