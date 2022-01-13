@@ -1,8 +1,8 @@
 package nl.saxion.cds.housingassociation.services;
 
 import nl.saxion.cds.housingassociation.binarytree.BinaryTree;
+import nl.saxion.cds.housingassociation.graph.DijkstraNode;
 import nl.saxion.cds.housingassociation.graph.Graph;
-import nl.saxion.cds.housingassociation.graph.Node;
 import nl.saxion.cds.housingassociation.models.Complaint;
 import nl.saxion.cds.housingassociation.models.Home;
 import nl.saxion.cds.housingassociation.providers.ComplaintProvider;
@@ -69,7 +69,7 @@ public class HomeService {
         return maintenanceCostsTop;
     }
 
-    public int calculateDistance(Node start, Node destination) {
+    public int calculateDistance(DijkstraNode start, DijkstraNode destination) {
         return (destination.getHome().getAddressY() - start.getHome().getAddressY() + (destination.getHome().getAddressX() - start.getHome().getAddressX()));
     }
 
@@ -104,94 +104,94 @@ public class HomeService {
         // Create a new Home as starting location with name 0 and coordinates 0,0
         //TODO: Create Location class instead of using a new Home constructor for making this starting point
         Home startingLocation = new Home(0L, 0, 0);
-        Node nodeA = new Node(0L, startingLocation); // 0
+        DijkstraNode dijkstraNodeA = new DijkstraNode(0L, startingLocation); // 0
 
-        // Create a new Node for every Home with the HomeID as name and send Home object as well
+        // Create a new DijkstraNode for every Home with the HomeID as name and send Home object as well
         //TODO: Add Complaint object to constructor to calculate EstimatedTime, TotalTime and OtherCosts for a route
-        Node nodeB = new Node(chosenHomes.get(0).getHomeID(), chosenHomes.get(0)); // 1003
-        Node nodeC = new Node(chosenHomes.get(1).getHomeID(), chosenHomes.get(1)); // 1008
-        Node nodeD = new Node(chosenHomes.get(2).getHomeID(), chosenHomes.get(2)); // 1018
-        Node nodeE = new Node(chosenHomes.get(3).getHomeID(), chosenHomes.get(3)); // 1021
-        Node nodeF = new Node(chosenHomes.get(4).getHomeID(), chosenHomes.get(4)); // 1023
-        Node nodeG = new Node(chosenHomes.get(5).getHomeID(), chosenHomes.get(5)); // 1079
-        Node nodeH = new Node(chosenHomes.get(6).getHomeID(), chosenHomes.get(6)); // 1085
-        Node nodeI = new Node(chosenHomes.get(7).getHomeID(), chosenHomes.get(7)); // 1086
-        Node nodeJ = new Node(chosenHomes.get(8).getHomeID(), chosenHomes.get(8)); // 1096
-        Node nodeK = new Node(chosenHomes.get(9).getHomeID(), chosenHomes.get(9)); // 1106
+        DijkstraNode dijkstraNodeB = new DijkstraNode(chosenHomes.get(0).getHomeID(), chosenHomes.get(0)); // 1003
+        DijkstraNode dijkstraNodeC = new DijkstraNode(chosenHomes.get(1).getHomeID(), chosenHomes.get(1)); // 1008
+        DijkstraNode dijkstraNodeD = new DijkstraNode(chosenHomes.get(2).getHomeID(), chosenHomes.get(2)); // 1018
+        DijkstraNode dijkstraNodeE = new DijkstraNode(chosenHomes.get(3).getHomeID(), chosenHomes.get(3)); // 1021
+        DijkstraNode dijkstraNodeF = new DijkstraNode(chosenHomes.get(4).getHomeID(), chosenHomes.get(4)); // 1023
+        DijkstraNode dijkstraNodeG = new DijkstraNode(chosenHomes.get(5).getHomeID(), chosenHomes.get(5)); // 1079
+        DijkstraNode dijkstraNodeH = new DijkstraNode(chosenHomes.get(6).getHomeID(), chosenHomes.get(6)); // 1085
+        DijkstraNode dijkstraNodeI = new DijkstraNode(chosenHomes.get(7).getHomeID(), chosenHomes.get(7)); // 1086
+        DijkstraNode dijkstraNodeJ = new DijkstraNode(chosenHomes.get(8).getHomeID(), chosenHomes.get(8)); // 1096
+        DijkstraNode dijkstraNodeK = new DijkstraNode(chosenHomes.get(9).getHomeID(), chosenHomes.get(9)); // 1106
 
-        // Add neighbours for each Node and add calculated distance between Nodes
+        // Add neighbours for each DijkstraNode and add calculated distance between Nodes
         //TODO: Invent loop for adding all these destinations
 
         //        0; 0x, 0y (starting location) --> neighbours; 1079
-        nodeA.addDestination(nodeG, calculateDistance(nodeA, nodeG)); // 1079
+        dijkstraNodeA.addDestination(dijkstraNodeG, calculateDistance(dijkstraNodeA, dijkstraNodeG)); // 1079
 
         //        1079; 53x, 37y --> neighbours; 1085, 1096, 1023
-        nodeG.addDestination(nodeH, calculateDistance(nodeG, nodeH)); // 1085
-        nodeG.addDestination(nodeJ, calculateDistance(nodeG, nodeJ)); // 1096
-        nodeG.addDestination(nodeF, calculateDistance(nodeG, nodeF)); // 1023
+        dijkstraNodeG.addDestination(dijkstraNodeH, calculateDistance(dijkstraNodeG, dijkstraNodeH)); // 1085
+        dijkstraNodeG.addDestination(dijkstraNodeJ, calculateDistance(dijkstraNodeG, dijkstraNodeJ)); // 1096
+        dijkstraNodeG.addDestination(dijkstraNodeF, calculateDistance(dijkstraNodeG, dijkstraNodeF)); // 1023
 
         //        1085; 146x, 418y --> neighbours; 1079, 1096, 1086
-        nodeH.addDestination(nodeG, calculateDistance(nodeH, nodeG)); // 1079
-        nodeH.addDestination(nodeJ, calculateDistance(nodeH, nodeJ)); // 1096
-        nodeH.addDestination(nodeI, calculateDistance(nodeH, nodeI)); // 1086
+        dijkstraNodeH.addDestination(dijkstraNodeG, calculateDistance(dijkstraNodeH, dijkstraNodeG)); // 1079
+        dijkstraNodeH.addDestination(dijkstraNodeJ, calculateDistance(dijkstraNodeH, dijkstraNodeJ)); // 1096
+        dijkstraNodeH.addDestination(dijkstraNodeI, calculateDistance(dijkstraNodeH, dijkstraNodeI)); // 1086
 
         //        1086; 201x, 721y --> neighbours; 1085, 1106, 1008
-        nodeI.addDestination(nodeH, calculateDistance(nodeI, nodeH)); // 1085
-        nodeI.addDestination(nodeK, calculateDistance(nodeI, nodeK)); // 1106
-        nodeI.addDestination(nodeC, calculateDistance(nodeI, nodeC)); // 1008
+        dijkstraNodeI.addDestination(dijkstraNodeH, calculateDistance(dijkstraNodeI, dijkstraNodeH)); // 1085
+        dijkstraNodeI.addDestination(dijkstraNodeK, calculateDistance(dijkstraNodeI, dijkstraNodeK)); // 1106
+        dijkstraNodeI.addDestination(dijkstraNodeC, calculateDistance(dijkstraNodeI, dijkstraNodeC)); // 1008
 
         //        1106; 74x, 979y --> neighbours; 1086
-        nodeK.addDestination(nodeI, calculateDistance(nodeK, nodeI)); // 1086
+        dijkstraNodeK.addDestination(dijkstraNodeI, calculateDistance(dijkstraNodeK, dijkstraNodeI)); // 1086
 
         //        1008; 330x, 792y --> neighbours; 1086, 1096, 1018
-        nodeC.addDestination(nodeI, calculateDistance(nodeC, nodeI)); // 1086
-        nodeC.addDestination(nodeJ, calculateDistance(nodeC, nodeJ)); // 1096
-        nodeC.addDestination(nodeD, calculateDistance(nodeC, nodeD)); // 1018
+        dijkstraNodeC.addDestination(dijkstraNodeI, calculateDistance(dijkstraNodeC, dijkstraNodeI)); // 1086
+        dijkstraNodeC.addDestination(dijkstraNodeJ, calculateDistance(dijkstraNodeC, dijkstraNodeJ)); // 1096
+        dijkstraNodeC.addDestination(dijkstraNodeD, calculateDistance(dijkstraNodeC, dijkstraNodeD)); // 1018
 
         //        1096; 347x, 427y --> neighbours; 1085, 1079, 1023, 1003, 1018, 1008
-        nodeJ.addDestination(nodeH, calculateDistance(nodeJ, nodeH)); // 1085
-        nodeJ.addDestination(nodeG, calculateDistance(nodeJ, nodeG)); // 1079
-        nodeJ.addDestination(nodeF, calculateDistance(nodeJ, nodeF)); // 1023
-        nodeJ.addDestination(nodeB, calculateDistance(nodeJ, nodeB)); // 1003
-        nodeJ.addDestination(nodeD, calculateDistance(nodeJ, nodeD)); // 1018
-        nodeJ.addDestination(nodeC, calculateDistance(nodeJ, nodeC)); // 1008
+        dijkstraNodeJ.addDestination(dijkstraNodeH, calculateDistance(dijkstraNodeJ, dijkstraNodeH)); // 1085
+        dijkstraNodeJ.addDestination(dijkstraNodeG, calculateDistance(dijkstraNodeJ, dijkstraNodeG)); // 1079
+        dijkstraNodeJ.addDestination(dijkstraNodeF, calculateDistance(dijkstraNodeJ, dijkstraNodeF)); // 1023
+        dijkstraNodeJ.addDestination(dijkstraNodeB, calculateDistance(dijkstraNodeJ, dijkstraNodeB)); // 1003
+        dijkstraNodeJ.addDestination(dijkstraNodeD, calculateDistance(dijkstraNodeJ, dijkstraNodeD)); // 1018
+        dijkstraNodeJ.addDestination(dijkstraNodeC, calculateDistance(dijkstraNodeJ, dijkstraNodeC)); // 1008
 
         //        1023; 414x, 314y --> neighbours; 1079, 1096, 1003
-        nodeF.addDestination(nodeG, calculateDistance(nodeF, nodeG)); // 1079
-        nodeF.addDestination(nodeJ, calculateDistance(nodeF, nodeJ)); // 1096
-        nodeF.addDestination(nodeB, calculateDistance(nodeF, nodeB)); // 1003
+        dijkstraNodeF.addDestination(dijkstraNodeG, calculateDistance(dijkstraNodeF, dijkstraNodeG)); // 1079
+        dijkstraNodeF.addDestination(dijkstraNodeJ, calculateDistance(dijkstraNodeF, dijkstraNodeJ)); // 1096
+        dijkstraNodeF.addDestination(dijkstraNodeB, calculateDistance(dijkstraNodeF, dijkstraNodeB)); // 1003
 
         //        1018; 668x, 684y --> neighbours; 1008, 1096, 1003, 1021
-        nodeD.addDestination(nodeC, calculateDistance(nodeD, nodeC)); // 1008
-        nodeD.addDestination(nodeJ, calculateDistance(nodeD, nodeJ)); // 1096
-        nodeD.addDestination(nodeB, calculateDistance(nodeD, nodeB)); // 1003
-        nodeD.addDestination(nodeE, calculateDistance(nodeD, nodeE)); // 1021
+        dijkstraNodeD.addDestination(dijkstraNodeC, calculateDistance(dijkstraNodeD, dijkstraNodeC)); // 1008
+        dijkstraNodeD.addDestination(dijkstraNodeJ, calculateDistance(dijkstraNodeD, dijkstraNodeJ)); // 1096
+        dijkstraNodeD.addDestination(dijkstraNodeB, calculateDistance(dijkstraNodeD, dijkstraNodeB)); // 1003
+        dijkstraNodeD.addDestination(dijkstraNodeE, calculateDistance(dijkstraNodeD, dijkstraNodeE)); // 1021
 
         //        1003; 736x, 471y --> neighbours; 1096, 1023, 1018
-        nodeB.addDestination(nodeJ, calculateDistance(nodeB, nodeJ)); // 1096
-        nodeB.addDestination(nodeF, calculateDistance(nodeB, nodeF)); // 1023
-        nodeB.addDestination(nodeD, calculateDistance(nodeB, nodeD)); // 1018
+        dijkstraNodeB.addDestination(dijkstraNodeJ, calculateDistance(dijkstraNodeB, dijkstraNodeJ)); // 1096
+        dijkstraNodeB.addDestination(dijkstraNodeF, calculateDistance(dijkstraNodeB, dijkstraNodeF)); // 1023
+        dijkstraNodeB.addDestination(dijkstraNodeD, calculateDistance(dijkstraNodeB, dijkstraNodeD)); // 1018
 
         //        1021; 945x, 776y --> neighbours; 1018
-        nodeE.addDestination(nodeD, calculateDistance(nodeE, nodeD)); // 1018
+        dijkstraNodeE.addDestination(dijkstraNodeD, calculateDistance(dijkstraNodeE, dijkstraNodeD)); // 1018
 
         // Create a new Dijkstra Graph and add all newly created Nodes to the Graph
         Graph homesGraph = new Graph();
 
-        homesGraph.addNode(nodeA);
-        homesGraph.addNode(nodeB);
-        homesGraph.addNode(nodeC);
-        homesGraph.addNode(nodeD);
-        homesGraph.addNode(nodeE);
-        homesGraph.addNode(nodeF);
-        homesGraph.addNode(nodeG);
-        homesGraph.addNode(nodeH);
-        homesGraph.addNode(nodeI);
-        homesGraph.addNode(nodeJ);
-        homesGraph.addNode(nodeK);
+        homesGraph.addNode(dijkstraNodeA);
+        homesGraph.addNode(dijkstraNodeB);
+        homesGraph.addNode(dijkstraNodeC);
+        homesGraph.addNode(dijkstraNodeD);
+        homesGraph.addNode(dijkstraNodeE);
+        homesGraph.addNode(dijkstraNodeF);
+        homesGraph.addNode(dijkstraNodeG);
+        homesGraph.addNode(dijkstraNodeH);
+        homesGraph.addNode(dijkstraNodeI);
+        homesGraph.addNode(dijkstraNodeJ);
+        homesGraph.addNode(dijkstraNodeK);
 
-        // Calculate shortest path from homesGraph with nodeA (starting location) as start
-        System.out.println(homesGraph.calculateShortestPathFromSource(homesGraph, nodeA));
-        return homesGraph.calculateShortestPathFromSource(homesGraph, nodeA);
+        // Calculate shortest path from homesGraph with dijkstraNodeA (starting location) as start
+        System.out.println(homesGraph.calculateShortestPathFromSource(homesGraph, dijkstraNodeA));
+        return homesGraph.calculateShortestPathFromSource(homesGraph, dijkstraNodeA);
     }
 }

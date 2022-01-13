@@ -4,24 +4,24 @@ import nl.saxion.cds.housingassociation.models.Home;
 
 import java.util.*;
 
-public class Node {
+public class DijkstraNode {
 
     private Long name;
 
     private Home home;
 
-    private List<Node> shortestPath = new LinkedList<>();
+    private List<DijkstraNode> shortestPath = new LinkedList<>();
 
     private Integer distance = Integer.MAX_VALUE;
 
-    Map<Node, Integer> adjacentNodes = new HashMap<>();
+    Map<DijkstraNode, Integer> adjacentNodes = new HashMap<>();
 
-    public Node(Long name, Home home) {
+    public DijkstraNode(Long name, Home home) {
         this.name = home.getHomeID();
         this.home = home;
     }
 
-    public void addDestination(Node destination, int distance) {
+    public void addDestination(DijkstraNode destination, int distance) {
         adjacentNodes.put(destination, distance);
     }
 
@@ -29,11 +29,11 @@ public class Node {
         return home;
     }
 
-    public List<Node> getShortestPath() {
+    public List<DijkstraNode> getShortestPath() {
         return shortestPath;
     }
 
-    public void setShortestPath(List<Node> shortestPath) {
+    public void setShortestPath(List<DijkstraNode> shortestPath) {
         this.shortestPath = shortestPath;
     }
 
@@ -45,7 +45,7 @@ public class Node {
         this.distance = distance;
     }
 
-    public Map<Node, Integer> getAdjacentNodes() {
+    public Map<DijkstraNode, Integer> getAdjacentNodes() {
         return adjacentNodes;
     }
 

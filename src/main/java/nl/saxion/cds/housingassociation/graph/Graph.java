@@ -7,66 +7,66 @@ import java.util.Set;
 
 public class Graph {
 
-    private Set<Node> nodes = new HashSet<>();
+    private Set<DijkstraNode> dijkstraNodes = new HashSet<>();
 
-    public void addNode(Node nodeA) {
-        nodes.add(nodeA);
+    public void addNode(DijkstraNode dijkstraNodeA) {
+        dijkstraNodes.add(dijkstraNodeA);
     }
 
-    public static Graph calculateShortestPathFromSource(Graph graph, Node source) {
+    public static Graph calculateShortestPathFromSource(Graph graph, DijkstraNode source) {
         source.setDistance(0);
 
-        Set<Node> settledNodes = new HashSet<>();
-        Set<Node> unsettledNodes = new HashSet<>();
+        Set<DijkstraNode> settledDijkstraNodes = new HashSet<>();
+        Set<DijkstraNode> unsettledDijkstraNodes = new HashSet<>();
 
-        unsettledNodes.add(source);
+        unsettledDijkstraNodes.add(source);
 
-        while (unsettledNodes.size() != 0) {
-            Node currentNode = getLowestDistanceNode(unsettledNodes);
-            unsettledNodes.remove(currentNode);
-            for (Map.Entry< Node, Integer> adjacencyPair:
-                    currentNode.getAdjacentNodes().entrySet()) {
-                Node adjacentNode = adjacencyPair.getKey();
+        while (unsettledDijkstraNodes.size() != 0) {
+            DijkstraNode currentDijkstraNode = getLowestDistanceNode(unsettledDijkstraNodes);
+            unsettledDijkstraNodes.remove(currentDijkstraNode);
+            for (Map.Entry<DijkstraNode, Integer> adjacencyPair:
+                    currentDijkstraNode.getAdjacentNodes().entrySet()) {
+                DijkstraNode adjacentDijkstraNode = adjacencyPair.getKey();
                 Integer edgeWeight = adjacencyPair.getValue();
-                if (!settledNodes.contains(adjacentNode)) {
-                    calculateMinimumDistance(adjacentNode, edgeWeight, currentNode);
-                    unsettledNodes.add(adjacentNode);
+                if (!settledDijkstraNodes.contains(adjacentDijkstraNode)) {
+                    calculateMinimumDistance(adjacentDijkstraNode, edgeWeight, currentDijkstraNode);
+                    unsettledDijkstraNodes.add(adjacentDijkstraNode);
                 }
             }
-            settledNodes.add(currentNode);
+            settledDijkstraNodes.add(currentDijkstraNode);
         }
         return graph;
     }
 
-    private static Node getLowestDistanceNode(Set< Node > unsettledNodes) {
-        Node lowestDistanceNode = null;
+    private static DijkstraNode getLowestDistanceNode(Set<DijkstraNode> unsettledDijkstraNodes) {
+        DijkstraNode lowestDistanceDijkstraNode = null;
         int lowestDistance = Integer.MAX_VALUE;
-        for (Node node: unsettledNodes) {
-            int nodeDistance = node.getDistance();
+        for (DijkstraNode dijkstraNode : unsettledDijkstraNodes) {
+            int nodeDistance = dijkstraNode.getDistance();
             if (nodeDistance < lowestDistance) {
                 lowestDistance = nodeDistance;
-                lowestDistanceNode = node;
+                lowestDistanceDijkstraNode = dijkstraNode;
             }
         }
-        return lowestDistanceNode;
+        return lowestDistanceDijkstraNode;
     }
 
-    private static void calculateMinimumDistance(Node evaluationNode,
-                                                 Integer edgeWeigh, Node sourceNode) {
-        Integer sourceDistance = sourceNode.getDistance();
-        if (sourceDistance + edgeWeigh < evaluationNode.getDistance()) {
-            evaluationNode.setDistance(sourceDistance + edgeWeigh);
-            LinkedList<Node> shortestPath = new LinkedList<>(sourceNode.getShortestPath());
-            shortestPath.add(sourceNode);
-            evaluationNode.setShortestPath(shortestPath);
+    private static void calculateMinimumDistance(DijkstraNode evaluationDijkstraNode,
+                                                 Integer edgeWeigh, DijkstraNode sourceDijkstraNode) {
+        Integer sourceDistance = sourceDijkstraNode.getDistance();
+        if (sourceDistance + edgeWeigh < evaluationDijkstraNode.getDistance()) {
+            evaluationDijkstraNode.setDistance(sourceDistance + edgeWeigh);
+            LinkedList<DijkstraNode> shortestPath = new LinkedList<>(sourceDijkstraNode.getShortestPath());
+            shortestPath.add(sourceDijkstraNode);
+            evaluationDijkstraNode.setShortestPath(shortestPath);
         }
     }
 
-    public Set<Node> getNodes() {
-        return nodes;
+    public Set<DijkstraNode> getNodes() {
+        return dijkstraNodes;
     }
 
-    public void setNodes(Set<Node> nodes) {
-        this.nodes = nodes;
+    public void setNodes(Set<DijkstraNode> dijkstraNodes) {
+        this.dijkstraNodes = dijkstraNodes;
     }
 }
