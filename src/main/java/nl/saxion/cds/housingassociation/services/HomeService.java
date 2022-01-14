@@ -1,6 +1,7 @@
 package nl.saxion.cds.housingassociation.services;
 
 import nl.saxion.cds.housingassociation.binarytree.BinaryTree;
+import nl.saxion.cds.housingassociation.graph.BreadthFirstNode;
 import nl.saxion.cds.housingassociation.graph.DijkstraNode;
 import nl.saxion.cds.housingassociation.graph.Graph;
 import nl.saxion.cds.housingassociation.models.Complaint;
@@ -193,5 +194,83 @@ public class HomeService {
         // Calculate shortest path from homesGraph with dijkstraNodeA (starting location) as start
         System.out.println(homesGraph.calculateShortestPathFromSource(homesGraph, dijkstraNodeA));
         return homesGraph.calculateShortestPathFromSource(homesGraph, dijkstraNodeA);
+    }
+
+    public Optional<BreadthFirstNode<Integer>> BreadthFirstSearch() {
+        // Invent a List of random Homes to be used as a route for an Employee
+        // See Graph documentation for details on invention
+        // Commented List for neighbouring overview
+            //        0; 0x, 0y (starting location) --> neighbours; 1079
+            //        1079; 53x, 37y --> neighbours; 1085, 1096, 1023
+            //        1085; 146x, 418y --> neighbours; 1079, 1096, 1086
+            //        1086; 201x, 721y --> neighbours; 1085, 1106, 1008
+            //        1106; 74x, 979y --> neighbours; 1086
+            //        1008; 330x, 792y --> neighbours; 1086, 1096, 1018
+            //        1096; 347x, 427y --> neighbours; 1085, 1079, 1023, 1003, 1018, 1008
+            //        1023; 414x, 314y --> neighbours; 1079, 1096, 1003
+            //        1018; 668x, 684y --> neighbours; 1008, 1096, 1003, 1021
+            //        1003; 736x, 471y --> neighbours; 1096, 1023, 1018
+            //        1021; 945x, 776y --> neighbours; 1018
+
+        // Create a Node for the start (housing association location)
+        BreadthFirstNode<Integer> start = new BreadthFirstNode<>(0);
+        // Create a Node for each Home, with the HomeID as value
+        BreadthFirstNode<Integer> B = new BreadthFirstNode<>(1079);
+        BreadthFirstNode<Integer> C = new BreadthFirstNode<>(1085);
+        BreadthFirstNode<Integer> D = new BreadthFirstNode<>(1086);
+        BreadthFirstNode<Integer> E = new BreadthFirstNode<>(1106);
+        BreadthFirstNode<Integer> F = new BreadthFirstNode<>(1008);
+        BreadthFirstNode<Integer> G = new BreadthFirstNode<>(1096);
+        BreadthFirstNode<Integer> H = new BreadthFirstNode<>(1023);
+        BreadthFirstNode<Integer> I = new BreadthFirstNode<>(1003);
+        BreadthFirstNode<Integer> J = new BreadthFirstNode<>(1018);
+        BreadthFirstNode<Integer> K = new BreadthFirstNode<>(1021);
+
+        // Add Neighbours to each Node
+        start.addNeighbour(B); // start --> 1079
+
+        B.addNeighbour(start); // 1079 --> start
+        B.addNeighbour(C); // 1079 --> 1085
+        B.addNeighbour(G); // 1079 --> 1096
+        B.addNeighbour(H); // 1079 --> 1023
+
+        C.addNeighbour(B); // 1085 --> 1079
+        C.addNeighbour(G); // 1085 --> 1096
+        C.addNeighbour(D); // 1085 --> 1086
+
+        D.addNeighbour(C); // 1086 --> 1085
+        D.addNeighbour(E); // 1086 --> 1106
+        D.addNeighbour(F); // 1086 --> 1008
+
+        E.addNeighbour(D); // 1106 --> 1086
+
+        F.addNeighbour(D); // 1008 --> 1086
+        F.addNeighbour(G); // 1008 --> 1096
+        F.addNeighbour(J); // 1008 --> 1018
+
+        G.addNeighbour(B); // 1096 --> 1079
+        G.addNeighbour(C); // 1096 --> 1085
+        G.addNeighbour(F); // 1096 --> 1008
+        G.addNeighbour(H); // 1096 --> 1023
+        G.addNeighbour(I); // 1096 --> 1003
+        G.addNeighbour(J); // 1096 --> 1018
+
+        H.addNeighbour(B); // 1023 --> 1079
+        H.addNeighbour(G); // 1023 --> 1096
+        H.addNeighbour(I); // 1023 --> 1003
+
+        I.addNeighbour(G); // 1003 --> 1096
+        I.addNeighbour(H); // 1003 --> 1023
+        I.addNeighbour(J); // 1003 --> 1018
+
+        J.addNeighbour(F); // 1018 --> 1008
+        J.addNeighbour(G); // 1018 --> 1096
+        J.addNeighbour(I); // 1018 --> 1003
+        J.addNeighbour(K); // 1018 --> 1021
+
+        K.addNeighbour(J); // 1021 --> 1018
+
+        BreadthFirstNode.search(1021, B);
+        return Optional.empty();
     }
 }
