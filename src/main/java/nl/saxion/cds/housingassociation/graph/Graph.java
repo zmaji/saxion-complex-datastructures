@@ -89,4 +89,12 @@ public class Graph {
             evaluationDijkstraNode.setShortestPath(shortestPath);
         }
     }
+
+    public Set<DijkstraNode> getDijkstraNodes() {
+        return dijkstraNodes;
+    }
+
+    public void setDijkstraNodes(Set<DijkstraNode> dijkstraNodes) {
+        this.dijkstraNodes = dijkstraNodes;
+    }
 }

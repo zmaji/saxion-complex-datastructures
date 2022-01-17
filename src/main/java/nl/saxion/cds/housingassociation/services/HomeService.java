@@ -192,8 +192,8 @@ public class HomeService {
         homesGraph.addNode(dijkstraNodeK);
 
         // Calculate shortest path from homesGraph with dijkstraNodeA (starting location) as start
-        System.out.println(homesGraph.calculateShortestPathFromSource(homesGraph, dijkstraNodeA));
-        return homesGraph.calculateShortestPathFromSource(homesGraph, dijkstraNodeA);
+        System.out.println(Graph.calculateShortestPathFromSource(homesGraph, dijkstraNodeA));
+        return Graph.calculateShortestPathFromSource(homesGraph, dijkstraNodeA);
     }
 
     public Optional<BreadthFirstNode<Integer>> BreadthFirstSearch() {
