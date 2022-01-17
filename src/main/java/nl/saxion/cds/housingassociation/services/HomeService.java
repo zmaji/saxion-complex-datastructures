@@ -109,7 +109,6 @@ public class HomeService {
         }
 
         // Create a new Home as starting location with name 0 and coordinates 0,0
-        //TODO: Create Location class instead of using a new Home constructor for making this starting point
         Home startingLocation = new Home(0L, 0, 0);
         DijkstraNode dijkstraNodeA = new DijkstraNode(0L, startingLocation); // 0
 
