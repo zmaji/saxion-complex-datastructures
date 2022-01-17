@@ -25,6 +25,11 @@ public class BreadthFirstNode<T> {
         } else {
             // Add this and given Node to each others neighbouring Set
             this.neighbours.add(node);
+
+            // PRE: !this.neighbours.contains(node)
+            assert this.neighbours.contains(node) : "Node has not been added as Neighbour";
+            // PRE: this.neighbours.contains(node)
+
             node.neighbours.add(this);
         }
     }
@@ -44,6 +49,11 @@ public class BreadthFirstNode<T> {
         while (!queue.isEmpty()) {
             // Each time remove(pop) a Node from the Queue
             currentNode = queue.remove();
+
+            // PRE: queue.contains(currentNode)
+            assert queue.contains(currentNode) : "Current Node has not been deleted!";
+            // POST: !queue.contains(currentNode)
+
             // Print Nodes we've already visited
             System.out.println("Visited node with value: " + currentNode.getValue());
 

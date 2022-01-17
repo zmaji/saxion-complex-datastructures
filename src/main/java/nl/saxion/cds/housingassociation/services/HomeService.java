@@ -108,6 +108,10 @@ public class HomeService {
             }
         }
 
+        // PRE: chosenHomes.size == 0
+        assert chosenHomes.size() != 0;
+        // POST: chosenHomes.size == 10
+
         // Create a new Home as starting location with name 0 and coordinates 0,0
         Home startingLocation = new Home(0L, 0, 0);
         DijkstraNode dijkstraNodeA = new DijkstraNode(0L, startingLocation); // 0
@@ -115,6 +119,11 @@ public class HomeService {
         // Create a new DijkstraNode for every Home with the HomeID as name and send Home object as well
         //TODO: Add Complaint object to constructor to calculate EstimatedTime, TotalTime and OtherCosts for a route
         DijkstraNode dijkstraNodeB = new DijkstraNode(chosenHomes.get(0).getHomeID(), chosenHomes.get(0)); // 1003
+
+        // PRE: dijkstraNodeB == null
+        assert dijkstraNodeB.getHome().getHomeID() == 1003;
+        // POST: dijkstraNodeB == DijkstraNode(chosenHomes.get(0).getHomeID(), chosenHomes.get(0))
+
         DijkstraNode dijkstraNodeC = new DijkstraNode(chosenHomes.get(1).getHomeID(), chosenHomes.get(1)); // 1008
         DijkstraNode dijkstraNodeD = new DijkstraNode(chosenHomes.get(2).getHomeID(), chosenHomes.get(2)); // 1018
         DijkstraNode dijkstraNodeE = new DijkstraNode(chosenHomes.get(3).getHomeID(), chosenHomes.get(3)); // 1021

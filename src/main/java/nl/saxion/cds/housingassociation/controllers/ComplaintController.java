@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/complaints")
@@ -25,13 +27,13 @@ public class ComplaintController {
         return complaintService.getComplaints();
     }
 
-    @GetMapping("/top-complaints")
-    public void getTopComplaints() {
-        complaintService.getTopComplaints();
-    }
-
 //    @GetMapping("/top-complaints")
-//    public int getMostFrequent() {
-//        return complaintService.getTopComplaintsCount();
+//    public void getTopComplaints() {
+//        complaintService.getTopComplaints();
 //    }
+
+    @GetMapping("/top-complaints")
+    public List<Map.Entry<String, Integer>> getTopComplaints() {
+        return complaintService.getTopComplaints();
+    }
 }

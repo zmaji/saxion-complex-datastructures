@@ -36,6 +36,10 @@ public class ClientService {
                 }
             }
         }
+        // PRE: qualifiedClients.size == 0
+        assert !qualifiedClients.isEmpty() : "Not a single matching Home has been found!";
+        // POST: qualifiedClients.size == 74
+
         // Convert HashMap to List for sorting based on urgency
         List<Map.Entry<Client, Home>> convertedQualifiedClients = new ArrayList<>(qualifiedClients.entrySet());
         convertedQualifiedClients.sort(Map.Entry.comparingByKey(Comparator.reverseOrder()));
