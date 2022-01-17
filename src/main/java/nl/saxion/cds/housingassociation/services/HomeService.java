@@ -25,34 +25,40 @@ public class HomeService {
 
     public HashMap<Long, Integer> getTotalMaintenanceCosts() {
         HashMap<Long, Integer> maintenanceCosts = new HashMap<>();
-//        int highest = 0;
         BinaryTree tree = new BinaryTree();
 
+        // Iterate over the values of the Complaints HashMap
         for (Complaint complaint : complaints.values()) {
+            // If the HashMap maintenanceCosts already contains the Complaint
             if (maintenanceCosts.containsKey(complaint.getHomeId())) {
+
                 int cost = maintenanceCosts.get(complaint.getHomeId()) + complaint.getOtherCosts();
-//                if (cost > highest) {
-//                    highest = cost;
-//                }
+                // Add the Complaint and Costs to the maintenanceCosts HashMap
                 maintenanceCosts.put(complaint.getHomeId(), cost);
             } else {
+                // Add the Complaint and Costs to the maintenanceCosts HashMap
                 maintenanceCosts.put(complaint.getHomeId(), complaint.getOtherCosts());
             }
         }
 
+        // Create a new Node as Root Node with value 0
         BinaryTree.Node root = new BinaryTree.Node(0);
+        // Add all values of the maintenanceCosts to the tree as Nodes
         for (Integer value : maintenanceCosts.values()) {
             tree.insert(root, value);
         }
 
+        // Print the Traversing in order from the Root Node of the Tree
         System.out.println("Top Maintenance Cost Tree");
         System.out.println("Building tree with root value " + root.value);
         System.out.println("Traversing tree in order");
         tree.traverseInOrder(root);
         System.out.println();
+        // Initialise a List with the top 10 largest elements in the Binary Tree
         List<Integer> topNodes = tree.largestElements(root, 10);
         System.out.println("Getting largest element " + topNodes);
 
+        // Create a HashMap to store the HomeID together with the value
         HashMap<Long, Integer> maintenanceCostsTop = new HashMap<>();
         for (Map.Entry<Long, Integer> entry : maintenanceCosts.entrySet()) {
             boolean valid = false;
