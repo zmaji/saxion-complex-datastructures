@@ -75,13 +75,17 @@ public class HomeService {
 
         }
 
+        // Initialise a List with TopMaintenanceHome objects
         List<TopMaintenanceHome> finalTopMaintenanceList = new ArrayList<>();
+        // Iterate over HashMap and add every key an value as object to the finalTopMaintenanceList
         for (Map.Entry<Long, Integer> entry : maintenanceCostsTop.entrySet()) {
             finalTopMaintenanceList.add(new TopMaintenanceHome(entry.getKey(), entry.getValue()));
         }
 
+        // Sort the List with a Comparator
         Collections.sort(finalTopMaintenanceList);
 
+        // Return the newly created finalTopMaintenanceList with objects
         return finalTopMaintenanceList;
     }
 

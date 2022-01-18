@@ -1,6 +1,6 @@
 package nl.saxion.cds.housingassociation.models.complaint;
 
-public class Complaint {
+public class Complaint implements Comparable<Complaint> {
     private final Long complaintID;
     private Long homeID;
     private String category;
@@ -8,6 +8,10 @@ public class Complaint {
     private int actualTime;
     private int otherCosts;
 
+    @Override
+    public int compareTo(Complaint c) {
+        return (int) (complaintID - c.complaintID);
+    }
 
     public Complaint(Long complaintID) {
         this.complaintID = complaintID;

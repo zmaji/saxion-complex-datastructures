@@ -14,7 +14,9 @@ public class ClientService {
     private static PriorityQueue<Client> clients = ClientProvider.clients;
     private static HashMap<String, Home> homes = HomeProvider.homes;
 
+
     public PriorityQueue<Client> getClients() {
+        System.out.println(clients);
         return clients;
     }
 

@@ -12,13 +12,13 @@ public class ComplaintService {
     private static HashMap<String, Complaint> complaints = ComplaintProvider.complaints;
 
     public Collection<Complaint> getComplaints() {
-        return complaints.values();
+        List<Complaint> complaintObjects = new ArrayList<>(complaints.values());
+        Collections.sort(complaintObjects);
+        return complaintObjects;
     }
 
     public List<TopComplaint> getTopComplaints () {
         List<String> categories = new ArrayList<>();
-        HashMap<String, Integer> topComplaints = new HashMap<>();
-        List<Map.Entry<String, Integer>> convertedTopComplaints = new ArrayList<>(topComplaints.entrySet());
 
         // Add all category variables of a Complaint object into a new List due to not being able to count the frequency in HashMap
         for (Complaint complaint : complaints.values()) {
@@ -39,28 +39,14 @@ public class ComplaintService {
         int gasCount = Collections.frequency(categories, "gas");
         int otherCount = Collections.frequency(categories, "other");
 
-        // Add name with frequency count into a new List so it can be ordered with new values
-        topComplaints.put("Electricity", electCount);
-
-        // PRE: topComplaints.size == 0
-        assert topComplaints.size() == 1 : "Nothing has been added yet";
-        // POST: topComplaints.size == 1
-
-        topComplaints.put("Water", waterCount);
-        topComplaints.put("Gas", gasCount);
-        topComplaints.put("Other", otherCount);
-
-        // Sort List based on frequency in reversed order
-        System.out.println(convertedTopComplaints);
-        convertedTopComplaints.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
-        System.out.println(topComplaints);
-        System.out.println(convertedTopComplaints);
-
+        // Initialise new List with TopComplaints
         List<TopComplaint> topComplaintList = new ArrayList<>();
         topComplaintList.add(new TopComplaint("Electricity", electCount));
         topComplaintList.add(new TopComplaint("Water", waterCount));
         topComplaintList.add(new TopComplaint("Gas", gasCount));
         topComplaintList.add(new TopComplaint("Other", otherCount));
+
+        // Sort TopComplaints based on frequency
         Collections.sort(topComplaintList);
 
         return topComplaintList;

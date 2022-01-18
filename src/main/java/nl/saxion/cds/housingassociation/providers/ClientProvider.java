@@ -5,11 +5,12 @@ import nl.saxion.cds.housingassociation.models.people.Client;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class ClientProvider {
-    public static PriorityQueue<Client> clients = new PriorityQueue<>(Collections.reverseOrder());
+    public static PriorityQueue<Client> clients = new PriorityQueue<>(Comparator.comparing(Client::getUrgency));
 
     static {
         File homeFile = new File("./src/main/java/nl/saxion/cds/housingassociation/data/waitinglist.csv");
