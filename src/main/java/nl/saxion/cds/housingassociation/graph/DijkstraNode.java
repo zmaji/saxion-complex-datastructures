@@ -1,6 +1,6 @@
 package nl.saxion.cds.housingassociation.graph;
 
-import nl.saxion.cds.housingassociation.models.Home;
+import nl.saxion.cds.housingassociation.models.home.Home;
 
 import java.util.*;
 

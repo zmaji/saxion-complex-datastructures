@@ -1,7 +1,7 @@
 package nl.saxion.cds.housingassociation.services;
 
-import nl.saxion.cds.housingassociation.models.Complaint;
-import nl.saxion.cds.housingassociation.models.TopComplaint;
+import nl.saxion.cds.housingassociation.models.complaint.Complaint;
+import nl.saxion.cds.housingassociation.models.complaint.TopComplaint;
 import nl.saxion.cds.housingassociation.providers.ComplaintProvider;
 import org.springframework.stereotype.Service;
 

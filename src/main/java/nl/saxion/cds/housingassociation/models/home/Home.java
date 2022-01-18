@@ -1,4 +1,4 @@
-package nl.saxion.cds.housingassociation.models;
+package nl.saxion.cds.housingassociation.models.home;
 
 public class Home {
     private final Long homeID;

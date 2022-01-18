@@ -1,5 +1,6 @@
-package nl.saxion.cds.housingassociation.models;
+package nl.saxion.cds.housingassociation.models.people;
 
+import nl.saxion.cds.housingassociation.models.home.Home;
 import nl.saxion.cds.housingassociation.models.people.Client;
 
 public class QualifiedClientHome {

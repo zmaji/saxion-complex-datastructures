@@ -1,6 +1,6 @@
 package nl.saxion.cds.housingassociation.providers;
 
-import nl.saxion.cds.housingassociation.models.Home;
+import nl.saxion.cds.housingassociation.models.home.Home;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package nl.saxion.cds.housingassociation.models;
+package nl.saxion.cds.housingassociation.models.complaint;
 
 public class TopComplaint implements Comparable<TopComplaint> {
     private String name;

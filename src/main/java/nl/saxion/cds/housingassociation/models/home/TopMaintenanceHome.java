@@ -1,4 +1,4 @@
-package nl.saxion.cds.housingassociation.models;
+package nl.saxion.cds.housingassociation.models.home;
 
 public class TopMaintenanceHome implements Comparable<TopMaintenanceHome> {
     private final Long HomeID;

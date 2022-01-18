@@ -1,7 +1,7 @@
 package nl.saxion.cds.housingassociation.services;
 
-import nl.saxion.cds.housingassociation.models.Home;
-import nl.saxion.cds.housingassociation.models.QualifiedClientHome;
+import nl.saxion.cds.housingassociation.models.home.Home;
+import nl.saxion.cds.housingassociation.models.people.QualifiedClientHome;
 import nl.saxion.cds.housingassociation.models.people.Client;
 import nl.saxion.cds.housingassociation.providers.ClientProvider;
 import nl.saxion.cds.housingassociation.providers.HomeProvider;
