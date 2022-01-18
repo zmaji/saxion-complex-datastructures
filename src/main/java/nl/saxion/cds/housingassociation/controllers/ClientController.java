@@ -1,6 +1,7 @@
 package nl.saxion.cds.housingassociation.controllers;
 
 import nl.saxion.cds.housingassociation.models.Home;
+import nl.saxion.cds.housingassociation.models.QualifiedClientHome;
 import nl.saxion.cds.housingassociation.models.people.Client;
 import nl.saxion.cds.housingassociation.services.ClientService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,7 +36,7 @@ public class ClientController {
 //    }
 
     @GetMapping("/qualified")
-    public List<Map.Entry<Client, Home>> getQualifiedClients() {
+    public List<QualifiedClientHome> getQualifiedClients() {
         return clientService.getQualifiedClients();
     }
 }

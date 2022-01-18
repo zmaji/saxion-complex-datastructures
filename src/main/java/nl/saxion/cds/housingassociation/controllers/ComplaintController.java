@@ -1,6 +1,7 @@
 package nl.saxion.cds.housingassociation.controllers;
 
 import nl.saxion.cds.housingassociation.models.Complaint;
+import nl.saxion.cds.housingassociation.models.TopComplaint;
 import nl.saxion.cds.housingassociation.services.ComplaintService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,13 +28,8 @@ public class ComplaintController {
         return complaintService.getComplaints();
     }
 
-//    @GetMapping("/top-complaints")
-//    public void getTopComplaints() {
-//        complaintService.getTopComplaints();
-//    }
-
     @GetMapping("/top-complaints")
-    public List<Map.Entry<String, Integer>> getTopComplaints() {
+    public List<TopComplaint> getTopComplaints() {
         return complaintService.getTopComplaints();
     }
 }

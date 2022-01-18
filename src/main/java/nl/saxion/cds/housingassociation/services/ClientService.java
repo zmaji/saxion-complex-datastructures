@@ -1,6 +1,7 @@
 package nl.saxion.cds.housingassociation.services;
 
 import nl.saxion.cds.housingassociation.models.Home;
+import nl.saxion.cds.housingassociation.models.QualifiedClientHome;
 import nl.saxion.cds.housingassociation.models.people.Client;
 import nl.saxion.cds.housingassociation.providers.ClientProvider;
 import nl.saxion.cds.housingassociation.providers.HomeProvider;
@@ -17,8 +18,9 @@ public class ClientService {
         return clients;
     }
 
-    public List<Map.Entry<Client, Home>> getQualifiedClients() {
+    public List<QualifiedClientHome> getQualifiedClients() {
         HashMap<Client, Home> qualifiedClients = new HashMap<>();
+        List<QualifiedClientHome> qualifiedClientHomes = new ArrayList<>();
 
         // Convert Priority Queue to List due to not being able to iterate through a Priority Queue because .poll() removes the element.
         List<Client> sortedClients = new ArrayList<>(clients);
@@ -32,6 +34,7 @@ public class ClientService {
                     // If the home isn't already given away, add to the HashMap
                     if (!qualifiedClients.containsValue(home)) {
                         qualifiedClients.put(client, home);
+                        qualifiedClientHomes.add(new QualifiedClientHome(client, home));
                     }
                 }
             }
@@ -43,6 +46,6 @@ public class ClientService {
         // Convert HashMap to List for sorting based on urgency
         List<Map.Entry<Client, Home>> convertedQualifiedClients = new ArrayList<>(qualifiedClients.entrySet());
         convertedQualifiedClients.sort(Map.Entry.comparingByKey(Comparator.reverseOrder()));
-        return convertedQualifiedClients;
+        return qualifiedClientHomes;
     }
 }

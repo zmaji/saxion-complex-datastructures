@@ -1,6 +1,7 @@
 package nl.saxion.cds.housingassociation.services;
 
 import nl.saxion.cds.housingassociation.models.Complaint;
+import nl.saxion.cds.housingassociation.models.TopComplaint;
 import nl.saxion.cds.housingassociation.providers.ComplaintProvider;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class ComplaintService {
         return complaints.values();
     }
 
-    public List<Map.Entry<String, Integer>> getTopComplaints () {
+    public List<TopComplaint> getTopComplaints () {
         List<String> categories = new ArrayList<>();
         HashMap<String, Integer> topComplaints = new HashMap<>();
         List<Map.Entry<String, Integer>> convertedTopComplaints = new ArrayList<>(topComplaints.entrySet());
@@ -54,6 +55,14 @@ public class ComplaintService {
         convertedTopComplaints.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
         System.out.println(topComplaints);
         System.out.println(convertedTopComplaints);
-        return convertedTopComplaints;
+
+        List<TopComplaint> topComplaintList = new ArrayList<>();
+        topComplaintList.add(new TopComplaint("Electricity", electCount));
+        topComplaintList.add(new TopComplaint("Water", waterCount));
+        topComplaintList.add(new TopComplaint("Gas", gasCount));
+        topComplaintList.add(new TopComplaint("Other", otherCount));
+        Collections.sort(topComplaintList);
+
+        return topComplaintList;
     }
 }

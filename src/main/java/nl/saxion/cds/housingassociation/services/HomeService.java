@@ -6,6 +6,7 @@ import nl.saxion.cds.housingassociation.graph.DijkstraNode;
 import nl.saxion.cds.housingassociation.graph.Graph;
 import nl.saxion.cds.housingassociation.models.Complaint;
 import nl.saxion.cds.housingassociation.models.Home;
+import nl.saxion.cds.housingassociation.models.TopMaintenanceHome;
 import nl.saxion.cds.housingassociation.providers.ComplaintProvider;
 import nl.saxion.cds.housingassociation.providers.HomeProvider;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class HomeService {
         return homes.values();
     }
 
-    public HashMap<Long, Integer> getTotalMaintenanceCosts() {
+    public List<TopMaintenanceHome> getTotalMaintenanceCosts() {
         HashMap<Long, Integer> maintenanceCosts = new HashMap<>();
         BinaryTree tree = new BinaryTree();
 
@@ -73,7 +74,15 @@ public class HomeService {
             }
 
         }
-        return maintenanceCostsTop;
+
+        List<TopMaintenanceHome> finalTopMaintenanceList = new ArrayList<>();
+        for (Map.Entry<Long, Integer> entry : maintenanceCostsTop.entrySet()) {
+            finalTopMaintenanceList.add(new TopMaintenanceHome(entry.getKey(), entry.getValue()));
+        }
+
+        Collections.sort(finalTopMaintenanceList);
+
+        return finalTopMaintenanceList;
     }
 
     public int calculateDistance(DijkstraNode start, DijkstraNode destination) {

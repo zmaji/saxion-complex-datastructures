@@ -3,6 +3,7 @@ package nl.saxion.cds.housingassociation.controllers;
 import nl.saxion.cds.housingassociation.graph.BreadthFirstNode;
 import nl.saxion.cds.housingassociation.graph.Graph;
 import nl.saxion.cds.housingassociation.models.Home;
+import nl.saxion.cds.housingassociation.models.TopMaintenanceHome;
 import nl.saxion.cds.housingassociation.services.HomeService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -29,7 +31,7 @@ public class HomeController {
     }
 
     @GetMapping("top-maintenance")
-    public HashMap<Long, Integer> getTotalMaintenanceCosts() {
+    public List<TopMaintenanceHome> getTotalMaintenanceCosts() {
         return homeService.getTotalMaintenanceCosts();
     }
 
