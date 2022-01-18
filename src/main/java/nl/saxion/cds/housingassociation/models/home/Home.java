@@ -1,7 +1,5 @@
 package nl.saxion.cds.housingassociation.models.home;
 
-import nl.saxion.cds.housingassociation.models.complaint.Complaint;
-
 public class Home implements Comparable<Home> {
     private final Long homeID;
     private int addressX;
