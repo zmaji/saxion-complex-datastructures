@@ -14,10 +14,10 @@ public class ClientService {
     private static PriorityQueue<Client> clients = ClientProvider.clients;
     private static HashMap<String, Home> homes = HomeProvider.homes;
 
-
-    public PriorityQueue<Client> getClients() {
-        System.out.println(clients);
-        return clients;
+    public List<Client> getClients() {
+        List<Client> sortedClients = new ArrayList<>(clients);
+        sortedClients.sort(Collections.reverseOrder());
+        return sortedClients;
     }
 
     public List<QualifiedClientHome> getQualifiedClients() {

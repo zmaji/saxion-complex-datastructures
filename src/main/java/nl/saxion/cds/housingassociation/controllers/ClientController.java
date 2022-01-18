@@ -22,7 +22,7 @@ public class ClientController {
     }
 
     @GetMapping
-    public PriorityQueue<Client> getClients() {
+    public List<Client> getClients() {
         return clientService.getClients();
     }
 
