@@ -37,6 +37,7 @@ public class ClientService {
                     if (!qualifiedClients.containsValue(home)) {
                         qualifiedClients.put(client, home);
                         qualifiedClientHomes.add(new QualifiedClientHome(client, home));
+                        break;
                     }
                 }
             }
@@ -45,9 +46,6 @@ public class ClientService {
         assert !qualifiedClients.isEmpty() : "Not a single matching Home has been found!";
         // POST: qualifiedClients.size == 74
 
-        // Convert HashMap to List for sorting based on urgency
-        List<Map.Entry<Client, Home>> convertedQualifiedClients = new ArrayList<>(qualifiedClients.entrySet());
-        convertedQualifiedClients.sort(Map.Entry.comparingByKey(Comparator.reverseOrder()));
         return qualifiedClientHomes;
     }
 }
