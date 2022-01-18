@@ -1,6 +1,8 @@
 package nl.saxion.cds.housingassociation.models.home;
 
-public class Home {
+import nl.saxion.cds.housingassociation.models.complaint.Complaint;
+
+public class Home implements Comparable<Home> {
     private final Long homeID;
     private int addressX;
     private int addressY;
@@ -16,6 +18,11 @@ public class Home {
         this.homeID = homeID;
         this.addressX = addressX;
         this.addressY = addressY;
+    }
+
+    @Override
+    public int compareTo(Home h) {
+        return (int) (homeID - h.homeID);
     }
 
     public Long getHomeID() {

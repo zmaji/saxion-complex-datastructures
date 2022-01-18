@@ -18,10 +18,10 @@ public class HomeService {
     private static HashMap<String, Home> homes = HomeProvider.homes;
     private static HashMap<String, Complaint> complaints = ComplaintProvider.complaints;
 
-    //TODO: Boom heeft homes, compareTo gebasseerd op Mainenance Costs
-
     public Collection<Home> getHomes() {
-        return homes.values();
+        List<Home> homeObjects = new ArrayList<>(homes.values());
+        Collections.sort(homeObjects);
+        return homeObjects;
     }
 
     public List<TopMaintenanceHome> getTotalMaintenanceCosts() {
