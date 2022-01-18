@@ -7,6 +7,7 @@ import nl.saxion.cds.housingassociation.graph.Graph;
 import nl.saxion.cds.housingassociation.models.complaint.Complaint;
 import nl.saxion.cds.housingassociation.models.home.Home;
 import nl.saxion.cds.housingassociation.models.home.TopMaintenanceHome;
+import nl.saxion.cds.housingassociation.models.people.WorkTask;
 import nl.saxion.cds.housingassociation.providers.ComplaintProvider;
 import nl.saxion.cds.housingassociation.providers.HomeProvider;
 import org.springframework.stereotype.Service;
@@ -113,11 +114,31 @@ public class HomeService {
         // List is automatically sorted on order of adding (smallest to largest HomeID)
         List<Home> chosenHomes = new ArrayList<>();
 
-        // Iterate over the random HomeID's and find matching Home object in HashMap
-        // Add found Home object into chosenHomes Arraylist
+        // Initialise new list with Complaint objects from the values of the complaints HashMap
+        List<Complaint> complaintObjects = new ArrayList<>(complaints.values());
+        List<WorkTask> workTasks = new ArrayList<>();
+
+        // Iterate over the random HomeID's and find matching Home and Complaint object in HashMaps
         for (String homeID : homeIDs) {
             if (homes.containsKey(homeID)) {
+                // Add found Home object into chosenHomes Arraylist
                 chosenHomes.add(homes.get(homeID));
+            }
+            // Create a new WorkTask with the HomeID as ID and add it to a List
+            Long l = Long.parseLong(homeID);
+            WorkTask workTask = new WorkTask(l, 0, 0);
+            workTasks.add(workTask);
+        }
+
+        // Iterate over all Complaints and WorkTasks
+        for (Complaint complaint : complaintObjects) {
+            for (WorkTask workTask : workTasks) {
+                // If the Complaint ID matches the WorkTask ID
+                if (complaint.getHomeId().equals(workTask.getHomeID())) {
+                    // Add the sum to the totalEstimatedTime and totalActualTime
+                    workTask.setTotalEstimatedTime(workTask.getTotalEstimatedTime() + complaint.getEstimatedTime());
+                    workTask.setTotalActualTime(workTask.getTotalActualTime() + complaint.getActualTime());
+                }
             }
         }
 
@@ -129,23 +150,23 @@ public class HomeService {
         Home startingLocation = new Home(0L, 0, 0);
         DijkstraNode dijkstraNodeA = new DijkstraNode(0L, startingLocation); // 0
 
-        // Create a new DijkstraNode for every Home with the HomeID as name and send Home object as well
+        // Create a new DijkstraNode for every Home with the HomeID as name and send a Home and WorkTask object as well
         //TODO: Add Complaint object to constructor to calculate EstimatedTime, TotalTime and OtherCosts for a route
-        DijkstraNode dijkstraNodeB = new DijkstraNode(chosenHomes.get(0).getHomeID(), chosenHomes.get(0)); // 1003
+        DijkstraNode dijkstraNodeB = new DijkstraNode(chosenHomes.get(0).getHomeID(), chosenHomes.get(0), workTasks.get(0)); // 1003
 
         // PRE: dijkstraNodeB == null
         assert dijkstraNodeB.getHome().getHomeID() == 1003;
         // POST: dijkstraNodeB == DijkstraNode(chosenHomes.get(0).getHomeID(), chosenHomes.get(0))
 
-        DijkstraNode dijkstraNodeC = new DijkstraNode(chosenHomes.get(1).getHomeID(), chosenHomes.get(1)); // 1008
-        DijkstraNode dijkstraNodeD = new DijkstraNode(chosenHomes.get(2).getHomeID(), chosenHomes.get(2)); // 1018
-        DijkstraNode dijkstraNodeE = new DijkstraNode(chosenHomes.get(3).getHomeID(), chosenHomes.get(3)); // 1021
-        DijkstraNode dijkstraNodeF = new DijkstraNode(chosenHomes.get(4).getHomeID(), chosenHomes.get(4)); // 1023
-        DijkstraNode dijkstraNodeG = new DijkstraNode(chosenHomes.get(5).getHomeID(), chosenHomes.get(5)); // 1079
-        DijkstraNode dijkstraNodeH = new DijkstraNode(chosenHomes.get(6).getHomeID(), chosenHomes.get(6)); // 1085
-        DijkstraNode dijkstraNodeI = new DijkstraNode(chosenHomes.get(7).getHomeID(), chosenHomes.get(7)); // 1086
-        DijkstraNode dijkstraNodeJ = new DijkstraNode(chosenHomes.get(8).getHomeID(), chosenHomes.get(8)); // 1096
-        DijkstraNode dijkstraNodeK = new DijkstraNode(chosenHomes.get(9).getHomeID(), chosenHomes.get(9)); // 1106
+        DijkstraNode dijkstraNodeC = new DijkstraNode(chosenHomes.get(1).getHomeID(), chosenHomes.get(1), workTasks.get(1)); // 1008
+        DijkstraNode dijkstraNodeD = new DijkstraNode(chosenHomes.get(2).getHomeID(), chosenHomes.get(2), workTasks.get(2)); // 1018
+        DijkstraNode dijkstraNodeE = new DijkstraNode(chosenHomes.get(3).getHomeID(), chosenHomes.get(3), workTasks.get(3)); // 1021
+        DijkstraNode dijkstraNodeF = new DijkstraNode(chosenHomes.get(4).getHomeID(), chosenHomes.get(4), workTasks.get(4)); // 1023
+        DijkstraNode dijkstraNodeG = new DijkstraNode(chosenHomes.get(5).getHomeID(), chosenHomes.get(5), workTasks.get(5)); // 1079
+        DijkstraNode dijkstraNodeH = new DijkstraNode(chosenHomes.get(6).getHomeID(), chosenHomes.get(6), workTasks.get(6)); // 1085
+        DijkstraNode dijkstraNodeI = new DijkstraNode(chosenHomes.get(7).getHomeID(), chosenHomes.get(7), workTasks.get(7)); // 1086
+        DijkstraNode dijkstraNodeJ = new DijkstraNode(chosenHomes.get(8).getHomeID(), chosenHomes.get(8), workTasks.get(8)); // 1096
+        DijkstraNode dijkstraNodeK = new DijkstraNode(chosenHomes.get(9).getHomeID(), chosenHomes.get(9), workTasks.get(9)); // 1106
 
         // Add neighbours for each DijkstraNode and add calculated distance between Nodes
         //TODO: Invent loop for adding all these destinations

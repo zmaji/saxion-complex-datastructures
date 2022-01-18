@@ -1,6 +1,8 @@
 package nl.saxion.cds.housingassociation.graph;
 
+import nl.saxion.cds.housingassociation.models.complaint.Complaint;
 import nl.saxion.cds.housingassociation.models.home.Home;
+import nl.saxion.cds.housingassociation.models.people.WorkTask;
 
 import java.util.*;
 
@@ -10,8 +12,8 @@ public class DijkstraNode {
      * Comments and implementation made by Nils Kimenai and Maurice ten Teije */
 
     private Long name;
-
     private Home home;
+    private WorkTask workTask;
 
     private List<DijkstraNode> shortestPath = new LinkedList<>();
 
@@ -22,6 +24,12 @@ public class DijkstraNode {
     public DijkstraNode(Long name, Home home) {
         this.name = home.getHomeID();
         this.home = home;
+    }
+
+    public DijkstraNode(Long name, Home home, WorkTask workTask) {
+        this.name = home.getHomeID();
+        this.home = home;
+        this.workTask = workTask;
     }
 
     public void addDestination(DijkstraNode destination, int distance) {
@@ -46,6 +54,30 @@ public class DijkstraNode {
 
     public void setDistance(Integer distance) {
         this.distance = distance;
+    }
+
+    public Long getName() {
+        return name;
+    }
+
+    public void setName(Long name) {
+        this.name = name;
+    }
+
+    public void setHome(Home home) {
+        this.home = home;
+    }
+
+    public WorkTask getWorkTask() {
+        return workTask;
+    }
+
+    public void setWorkTask(WorkTask workTask) {
+        this.workTask = workTask;
+    }
+
+    public void setAdjacentNodes(Map<DijkstraNode, Integer> adjacentNodes) {
+        this.adjacentNodes = adjacentNodes;
     }
 
     public Map<DijkstraNode, Integer> getAdjacentNodes() {
