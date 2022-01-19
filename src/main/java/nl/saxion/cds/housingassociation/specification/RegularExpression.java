@@ -11,6 +11,9 @@ import java.util.regex.Pattern;
 
 public class RegularExpression {
 
+    /** Class is made with the help of https://www.geeksforgeeks.org/how-to-validate-a-username-using-regular-expressions-in-java/
+     * Comments and implementation made by Nils Kimenai and Maurice ten Teije */
+
     private static final PriorityQueue<Client> clients = ClientProvider.clients;
     private static final List<String> testNames = new ArrayList<>();
 
