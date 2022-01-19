@@ -17,6 +17,7 @@ public class RegularExpression {
     private static final PriorityQueue<Client> clients = ClientProvider.clients;
     private static final List<String> testNames = new ArrayList<>();
 
+    // Check if last name is valid based on a regular expression
     public static boolean isValidLastName(String lastName) {
 
         // Regular expression to validate the Last Name with
@@ -42,6 +43,7 @@ public class RegularExpression {
     }
 
     public static void main(String[] args) {
+        // Add some Strings to test to the testList
         testNames.add("");
         testNames.add("H");
         testNames.add("uPSIDEDOWN");
@@ -49,10 +51,12 @@ public class RegularExpression {
         testNames.add("1212121212");
         testNames.add("Williamsonnnnnnnnnnnnnnnnnn");
 
+        // Iterate over the testNames and check for valid last name
         for (String testLastName : testNames) {
             System.out.println(testLastName + ": " + isValidLastName(testLastName));
         }
 
+        // Iterate over the Clients and check for valid last name
         for (Client client : clients) {
             String lastName = client.getName();
             System.out.println(lastName + ": " + isValidLastName(lastName));
