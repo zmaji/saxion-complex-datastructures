@@ -3,13 +3,16 @@ package nl.saxion.cds.housingassociation.specification;
 import nl.saxion.cds.housingassociation.models.people.Client;
 import nl.saxion.cds.housingassociation.providers.ClientProvider;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegularExpression {
 
-    private static PriorityQueue<Client> clients = ClientProvider.clients;
+    private static final PriorityQueue<Client> clients = ClientProvider.clients;
+    private static final List<String> testNames = new ArrayList<>();
 
     public static boolean isValidLastName(String lastName) {
 
@@ -36,17 +39,16 @@ public class RegularExpression {
     }
 
     public static void main(String[] args) {
-        String str1 = "H";
-        System.out.println(str1 + ": " + isValidLastName(str1));
+        testNames.add("");
+        testNames.add("H");
+        testNames.add("uPSIDEDOWN");
+        testNames.add("Williamson");
+        testNames.add("1212121212");
+        testNames.add("Williamsonnnnnnnnnnnnnnnnnn");
 
-        String str2 = "uPSIDEDOWN";
-        System.out.println(str2 + ": " + isValidLastName(str2));
-
-        String str3 = "Williamson";
-        System.out.println(str3 + ": " + isValidLastName(str3));
-
-        String str4 = "1212121212";
-        System.out.println(str4 + ": " + isValidLastName(str4));
+        for (String testLastName : testNames) {
+            System.out.println(testLastName + ": " + isValidLastName(testLastName));
+        }
 
         for (Client client : clients) {
             String lastName = client.getName();
