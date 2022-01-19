@@ -1,6 +1,7 @@
 package nl.saxion.cds.housingassociation.graph;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nl.saxion.cds.housingassociation.models.home.Home;
 import nl.saxion.cds.housingassociation.models.people.WorkTask;
 
