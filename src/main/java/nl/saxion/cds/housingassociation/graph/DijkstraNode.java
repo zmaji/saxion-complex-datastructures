@@ -1,6 +1,6 @@
 package nl.saxion.cds.housingassociation.graph;
 
-import nl.saxion.cds.housingassociation.models.complaint.Complaint;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import nl.saxion.cds.housingassociation.models.home.Home;
 import nl.saxion.cds.housingassociation.models.people.WorkTask;
 
@@ -11,23 +11,29 @@ public class DijkstraNode {
     /** Class is made with the help of https://www.baeldung.com/java-dijkstra
      * Comments and implementation made by Nils Kimenai and Maurice ten Teije */
 
-    private Long name;
+    private Long homeID;
+
+    @JsonIgnore
     private Home home;
+
+    @JsonIgnore
     private WorkTask workTask;
 
     private List<DijkstraNode> shortestPath = new LinkedList<>();
 
     private Integer distance = Integer.MAX_VALUE;
 
+    @JsonIgnore
     Map<DijkstraNode, Integer> adjacentNodes = new HashMap<>();
 
-    public DijkstraNode(Long name, Home home) {
-        this.name = home.getHomeID();
+
+    public DijkstraNode(Long homeID, Home home) {
+        this.homeID = home.getHomeID();
         this.home = home;
     }
 
-    public DijkstraNode(Long name, Home home, WorkTask workTask) {
-        this.name = home.getHomeID();
+    public DijkstraNode(Long homeID, Home home, WorkTask workTask) {
+        this.homeID = home.getHomeID();
         this.home = home;
         this.workTask = workTask;
     }
@@ -56,12 +62,12 @@ public class DijkstraNode {
         this.distance = distance;
     }
 
-    public Long getName() {
-        return name;
+    public Long getHomeID() {
+        return homeID;
     }
 
-    public void setName(Long name) {
-        this.name = name;
+    public void setHomeID(Long homeID) {
+        this.homeID = homeID;
     }
 
     public void setHome(Home home) {
@@ -86,6 +92,6 @@ public class DijkstraNode {
 
     @Override
     public String toString() {
-        return "Home ID: " + this.getHome().getHomeID();
+        return "Home ID: " + this.getHomeID();
     }
 }

@@ -151,7 +151,6 @@ public class HomeService {
         DijkstraNode dijkstraNodeA = new DijkstraNode(0L, startingLocation); // 0
 
         // Create a new DijkstraNode for every Home with the HomeID as name and send a Home and WorkTask object as well
-        //TODO: Add Complaint object to constructor to calculate EstimatedTime, TotalTime and OtherCosts for a route
         DijkstraNode dijkstraNodeB = new DijkstraNode(chosenHomes.get(0).getHomeID(), chosenHomes.get(0), workTasks.get(0)); // 1003
 
         // PRE: dijkstraNodeB == null
